@@ -313,9 +313,10 @@ function getAllFiles(dir: string, baseDir: string = dir): FileToUpload[] {
   }
   // Debug: move server/index.js to start
   const indexFile = files.find((f) => f.valPath == "server/index.js");
-  if (!indexFile) throw new Error("fail");
-  files.splice(files.indexOf(indexFile), 1);
-  files.unshift(indexFile);
+  if (indexFile) {
+    files.splice(files.indexOf(indexFile), 1);
+    files.unshift(indexFile);
+  }
   return files;
 }
 
